@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Talento Divino - Panadería, repostería, minimarket y manualidades en Calbuco, Chile.">
+    <meta name="keywords" content="panadería, repostería, manualidades, minimarket, Calbuco, Talento Divino">
+    <meta name="author" content="Talento Divino">
+
+    <title>Talento Divino | Minimarket, Repostería y Manualidades</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           VARIABLES GLOBALES
+        ========================================================= */
+
+        :root {
+            --primary: #D4A373;
+            --primary-light: #E6B98E;
+            --primary-dark: #A47148;
+
+            --bg-color: #2D1B15;
+            --bg-alt: #3E2723;
+            --card-bg: #4E342E;
+            --footer-bg: #1A0F0C;
+
+            --accent: #E63946;
+            --accent-hover: #c62828;
+
+            --success: #81C784;
+            --warning: #FFD166;
+            --info: #64B5F6;
+
+            --text-main: #FDF0D5;
+            --text-soft: #E0D3C2;
+            --text-dark: #2b1c17;
+
+            --border-color: rgba(255,255,255,0.08);
+            --shadow-soft: 0 5px 15px rgba(0,0,0,0.25);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.35);
+            --shadow-strong: 0 15px 40px rgba(0,0,0,0.5);
+
+            --radius-small: 10px;
+            --radius-medium: 18px;
+            --radius-large: 25px;
+
+            --transition-fast: 0.25s ease;
+            --transition-medium: 0.4s ease;
+            --transition-slow: 0.8s ease;
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:
+                linear-gradient(rgba(25,15,10,0.92), rgba(25,15,10,0.94)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+
+            color: var(--text-main);
+            overflow-x: hidden;
+            opacity: 0;
+            animation: pageFadeIn 1s forwards;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background:
+                radial-gradient(circle at top left, rgba(212,163,115,0.08), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(230,57,70,0.06), transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        section {
+            position: relative;
+        }
+
+        /* =========================================================
+           ANIMACIONES
+        ========================================================= */
+
+        @keyframes pageFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pageFadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(212,163,115,0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(212,163,115,0.6);
+            }
+
+            100% {
+                box-shadow: 0 0 5px rgba(212,163,115,0.3);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .page-exit {
+            animation: pageFadeOut 0.5s forwards;
+        }
+
+        /* =========================================================
+           SCROLL ANIMATION
+        ========================================================= */
+
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition:
+                opacity 0.8s ease-out,
+                transform 0.8s ease-out;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-element.exit {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        /* =========================================================
+           TIPOGRAFÍA
+        ========================================================= */
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            width: 90px;
+            height: 4px;
+            border-radius: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            display: block;
+            margin: 12px auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--text-soft);
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           BOTONES
+        ========================================================= */
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            box-shadow: 0 8px 20px rgba(230,57,70,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.15);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition:
+                background 0.4s,
+                padding 0.4s,
+                transform 0.4s;
+        }
+
+        header.scrolled {
+            background: rgba(45,27,21,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            padding: 0.8rem 5%;
+        }
+
+        header.hide-header {
+            transform: translateY(-100%);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            animation: pulse 4s infinite;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-main);
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================================================
+           HERO SECTION
+        ========================================================= */
+
+        #inicio {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 0 20px;
+            background:
+                linear-gradient(rgba(20,10,5,0.8), rgba(20,10,5,0.8)),
+                url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            position: relative;
+        }
+
+        #inicio::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(212,163,115,0.1);
+            top: 15%;
+            left: 8%;
+            filter: blur(20px);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        #inicio::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(230,57,70,0.08);
+            bottom: 10%;
+            right: 8%;
+            filter: blur(20px);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .hero-badge {
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(5px);
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 600;
+            animation: slideDown 1s ease forwards;
+        }
+
+        #inicio h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 1s ease forwards;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        #inicio p {
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            color: var(--text-soft);
+            animation: slideUp 1s ease forwards;
+            font-size: 1.15rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+        }
+
+        /* =========================================================
+           ESTADÍSTICAS
+        ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: -80px;
+            padding: 0 5% 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: rgba(78,52,46,0.95);
+            padding: 30px;
+            border-radius: var(--radius-medium);
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-medium);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--warning);
+        }
+
+        .stat-card p {
+            color: var(--text-soft);
+        }
+
+        /* =========================================================
+           NOSOTROS
+        ========================================================= */
+
+        #nosotros {
+            padding: 120px 5%;
+            background:
+                linear-gradient(rgba(35,20,15,0.88), rgba(35,20,15,0.92)),
+                url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-wrapper {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-image::before {
+            animation: float 6s ease-in-out infinite;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            top: 15px;
+            left: 15px;
+            z-index: -1;
+        }
+
+        .about-content {
+            background: rgba(78,52,46,0.82);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-soft);
+            margin-bottom: 20px;
+        }
+
+        .about-list {
+            margin-top: 20px;
+        }
+
+        .about-list li {
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            transition: 0.3s ease;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-list li:hover {
+            transform: translateX(8px);
+            background: rgba(212,163,115,0.08);
+        }
+
+        .about-list li span {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        /* =========================================================
+           PRODUCTOS
+        ========================================================= */
+
+        #productos {
+            padding: 120px 5%;
+        }
+
+        .filtros {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .btn-filtro {
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-medium);
+        }
+
+        .btn-filtro:hover,
+        .btn-filtro.activo {
+            background: var(--primary);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .tarjeta-producto {
+            background: var(--card-bg);
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            transition: all var(--transition-medium);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .tarjeta-producto.oculto {
+            display: none;
+        }
+
+        .img-producto {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tarjeta-producto:hover .img-producto {
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .info-producto {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .info-producto h3 {
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+        }
+
+        .info-producto .descripcion {
+            color: var(--text-soft);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .precio {
+            color: var(--success);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .rating {
+            margin-bottom: 15px;
+            color: #FFD166;
+        }
+
+        /* =========================================================
+           SERVICIOS
+        ========================================================= */
+
+        #servicios {
+            padding: 120px 5%;
+            background: var(--bg-alt);
+        }
+
+        .services-grid {
+            align-items: stretch;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(88,58,50,0.95), rgba(60,35,30,0.92));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition-medium);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212,163,115,0.08), transparent 60%);
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-icon {
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(circle, rgba(212,163,115,0.18), rgba(212,163,115,0.05));
+            border: 1px solid rgba(255,255,255,0.06);
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212,163,115,0.12);
+            font-size: 2rem;
+            animation: glow 4s infinite;
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 2;
+            line-height: 1.8;
+            color: var(--text-soft);
+        }
+
+        /* =========================================================
+           GALERÍA
+        ========================================================= */
+
+        #galeria {
+            padding: 120px 5%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+            height: 280px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* =========================================================
+           TESTIMONIOS
+        ========================================================= */
+
+        #testimonios {
+            padding: 120px 5%;
+            background: var(--bg-alt);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            transition: all 0.4s ease;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(78,52,46,0.95), rgba(60,35,30,0.92));
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .testimonial::before {
+            content: "❝";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 6rem;
+            color: rgba(212,163,115,0.1);
+        }
+
+        .perfil-cliente {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .perfil-cliente img {
+            transition: 0.4s ease;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .testimonial:hover .perfil-cliente img {
+            transform: scale(1.08);
+            border-color: #FFD166;
+        }
+
+        .perfil-cliente h4 {
+            margin-bottom: 4px;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .perfil-cliente span {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            display: inline-block;
+            padding: 8px 14px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #FFD166;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            letter-spacing: 3px;
+        }
+
+        .testimonial p {
+            font-size: 1.02rem;
+            line-height: 1.9;
+            color: var(--text-soft);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial h4 {
+            color: var(--primary-light);
+        }
+
+        /* =========================================================
+           UBICACIÓN
+        ========================================================= */
+
+        #ubicacion {
+            padding: 120px 5%;
+        }
+
+        .map-container {
+            border-radius: 25px;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: var(--shadow-strong);
+            border: 3px solid rgba(255,255,255,0.05);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* =========================================================
+           CONTACTO
+        ========================================================= */
+
+        #contacto {
+            padding: 120px 5%;
+            background: var(--bg-alt);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info,
+        .form-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 8px;
+        }
+
+        .contact-item p {
+            color: var(--text-soft);
+        }
+
+        .grupo-input {
+            margin-bottom: 22px;
+        }
+
+        .grupo-input label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .grupo-input input,
+        .grupo-input textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--bg-color);
+            color: var(--text-main);
+            transition: var(--transition-medium);
+        }
+
+        .grupo-input input:focus,
+        .grupo-input textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(212,163,115,0.1);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: var(--footer-bg);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            color: var(--text-soft);
+            margin-bottom: 15px;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .social:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            color: var(--bg-color);
+        }
+
+        /* =========================================================
+           BOTÓN WHATSAPP
+        ========================================================= */
+
+        .whatsapp {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-medium);
+            z-index: 999;
+            animation: pulse 2.5s infinite;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 992px) {
+
+            #inicio h1 {
+                font-size: 4rem;
+            }
+
+            .about-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            nav ul {
+                display: none;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            #inicio h1 {
+                font-size: 3rem;
+            }
+
+            #inicio p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .stats {
+                margin-top: -40px;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            #inicio h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .form-container,
+            .contact-info {
+                padding: 25px;
+            }
+
+            .grid-productos {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header id="header">
+
+        <div class="logo">
+            <span>✦</span>
+            Talento Divino
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section id="inicio">
+
+        <div class="hero-badge">
+            ✨ Tradición • Calidad • Amor Artesanal
+        </div>
+
+        <h1>Talento Divino</h1>
+
+        <p>
+            Tu rincón especial en Calbuco. Descubre sabores inolvidables,
+            productos frescos, repostería artesanal y manualidades únicas
+            creadas con pasión y dedicación.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#productos">
+                <button class="btn">Explorar Catálogo</button>
+            </a>
+
+            <a href="#contacto">
+                <button class="btn btn-secondary">Contáctanos</button>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         ESTADÍSTICAS
+    ========================================================= -->
+
+    <section class="stats">
+
+        <div class="stat-card fade-in-element">
+            <h3>+500</h3>
+            <p>Clientes felices</p>
+        </div>
+
+        <div class="stat-card fade-in-element">
+            <h3>100%</h3>
+            <p>Productos artesanales</p>
+        </div>
+
+        <div class="stat-card fade-in-element">
+            <h3>+40</h3>
+            <p>Productos disponibles</p>
+        </div>
+
+        <div class="stat-card fade-in-element">
+            <h3>24/7</h3>
+            <p>Atención cercana</p>
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         NOSOTROS
+    ========================================================= -->
+
+    <section id="nosotros">
+
+        <div class="about-wrapper">
+
+            <div class="about-image fade-in-element">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80" alt="Panadería artesanal">
+            </div>
+
+            <div class="about-content fade-in-element">
+
+                <h2>Nuestra Historia</h2>
+
+                <p>
+                    Talento Divino nace desde el corazón de una familia apasionada
+                    por la creatividad, la cocina y el trabajo artesanal.
+                    Cada producto refleja dedicación, cariño y un deseo profundo
+                    de entregar calidad a nuestra comunidad.
+                </p>
+
+                <p>
+                    Desde panes recién horneados hasta hermosas manualidades hechas
+                    a mano, buscamos transformar cada visita en una experiencia
+                    cálida, cercana y especial.
+                </p>
+
+                <ul class="about-list">
+                    <li><span>✔</span> Ingredientes frescos y seleccionados</li>
+                    <li><span>✔</span> Manualidades únicas y creativas</li>
+                    <li><span>✔</span> Atención cercana y familiar</li>
+                    <li><span>✔</span> Productos preparados con amor</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         PRODUCTOS
+    ========================================================= -->
+
+    <section id="productos">
+
+        <h2 class="fade-in-element">Nuestro Catálogo</h2>
+
+        <p class="section-subtitle fade-in-element">
+            Explora nuestra selección de productos frescos, deliciosos y artesanales.
+            Cada detalle está pensado para entregar sabor, calidad y felicidad.
+        </p>
+
+        <div class="filtros fade-in-element">
+            <button class="btn-filtro activo" onclick="filtrar('todos', event)">Todos</button>
+            <button class="btn-filtro" onclick="filtrar('panaderia', event)">Panadería</button>
+            <button class="btn-filtro" onclick="filtrar('reposteria', event)">Repostería</button>
+            <button class="btn-filtro" onclick="filtrar('manualidades', event)">Manualidades</button>
+            <button class="btn-filtro" onclick="filtrar('minimarket', event)">Minimarket</button>
+        </div>
+
+        <div class="grid-productos fade-in-element">
+
+            <div class="tarjeta-producto reposteria">
+                <div class="badge">Popular</div>
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80" class="img-producto">
+
+                <div class="info-producto">
+                    <h3>Torta de Chocolate</h3>
+
+                    <div class="rating">★★★★★</div>
+
+                    <p class="descripcion">
+                        Deliciosa torta artesanal con intenso sabor a chocolate.
+                    </p>
+
+                    <div class="precio">$15.000</div>
+
+                    <button class="btn">Agregar</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto panaderia">
+                <div class="badge">Fresco</div>
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" class="img-producto">
+
+                <div class="info-producto">
+                    <h3>Pan Amasado</h3>
+
+                    <div class="rating">★★★★★</div>
+
+                    <p class="descripcion">
+                        Pan recién horneado con receta tradicional chilena.
+                    </p>
+
+                    <div class="precio">$2.500 / kg</div>
+
+                    <button class="btn">Agregar</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto manualidades">
+                <div class="badge">Nuevo</div>
+                <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=80" class="img-producto">
+
+                <div class="info-producto">
+                    <h3>Flores Artesanales</h3>
+
+                    <div class="rating">★★★★★</div>
+
+                    <p class="descripcion">
+                        Hermosas flores decorativas hechas completamente a mano.
+                    </p>
+
+                    <div class="precio">$12.000</div>
+
+                    <button class="btn">Agregar</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto minimarket">
+                <div class="badge">Oferta</div>
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" class="img-producto">
+
+                <div class="info-producto">
+                    <h3>Verduras Frescas</h3>
+
+                    <div class="rating">★★★★☆</div>
+
+                    <p class="descripcion">
+                        Productos frescos seleccionados diariamente.
+                    </p>
+
+                    <div class="precio">Desde $3.000</div>
+
+                    <button class="btn">Agregar</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         SERVICIOS
+    ========================================================= -->
+
+    <section id="servicios">
+
+        <h2 class="fade-in-element">Nuestros Servicios</h2>
+
+        <div class="services-grid">
+
+            <div class="service-card fade-in-element">
+                <div class="service-icon">🍞</div>
+                <h3>Panadería</h3>
+                <p>
+                    Panes frescos preparados diariamente con recetas tradicionales.
+                </p>
+            </div>
+
+            <div class="service-card fade-in-element">
+                <div class="service-icon">🎂</div>
+                <h3>Repostería</h3>
+                <p>
+                    Tortas, cupcakes y postres personalizados para ocasiones especiales.
+                </p>
+            </div>
+
+            <div class="service-card fade-in-element">
+                <div class="service-icon">🧺</div>
+                <h3>Manualidades</h3>
+                <p>
+                    Creaciones únicas hechas a mano con dedicación y creatividad.
+                </p>
+            </div>
+
+            <div class="service-card fade-in-element">
+                <div class="service-icon">🛒</div>
+                <h3>Minimarket</h3>
+                <p>
+                    Productos esenciales para tu hogar con excelente atención.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         GALERÍA
+    ========================================================= -->
+
+    <section id="galeria">
+
+        <h2 class="fade-in-element">Galería</h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item fade-in-element">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80">
+                <div class="gallery-overlay">
+                    <h3>Panadería</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in-element">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80">
+                <div class="gallery-overlay">
+                    <h3>Macarons</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in-element">
+                <img src="https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?auto=format&fit=crop&w=900&q=80">
+                <div class="gallery-overlay">
+                    <h3>Manualidades</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item fade-in-element">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80">
+                <div class="gallery-overlay">
+                    <h3>Pastelería</h3>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         TESTIMONIOS
+    ========================================================= -->
+
+    <section id="testimonios">
+
+        <h2 class="fade-in-element">Opiniones de Clientes</h2>
+
+        <p class="section-subtitle fade-in-element">
+            Lo que nuestros clientes dicen sobre la experiencia Talento Divino.
+        </p>
+
+        <div class="testimonials-grid">
+
+            <div class="testimonial fade-in-element">
+
+                <div class="perfil-cliente">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="cliente">
+
+                    <div>
+                        <h4>@maria_gonzalez</h4>
+                        <span>Cliente frecuente</span>
+                    </div>
+                </div>
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    El mejor pan amasado de Calbuco. Todo se siente fresco, artesanal y hecho con muchísimo cariño.
+                </p>
+
+            </div>
+
+            <div class="testimonial fade-in-element">
+
+                <div class="perfil-cliente">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="cliente">
+
+                    <div>
+                        <h4>@daniela_soto</h4>
+                        <span>Compradora verificada</span>
+                    </div>
+                </div>
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    Las manualidades son hermosas y únicas. Siempre encuentro regalos especiales para mi familia.
+                </p>
+
+            </div>
+
+            <div class="testimonial fade-in-element">
+
+                <div class="perfil-cliente">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="cliente">
+
+                    <div>
+                        <h4>@carlos_vera</h4>
+                        <span>Cliente recomendado</span>
+                    </div>
+                </div>
+
+                <div class="stars">★★★★☆</div>
+
+                <p>
+                    Excelente atención y productos muy frescos. El ambiente del local transmite mucha calidez.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         UBICACIÓN
+    ========================================================= -->
+
+    <section id="ubicacion">
+
+        <h2 class="fade-in-element">Encuéntranos en Calbuco</h2>
+
+        <p class="section-subtitle fade-in-element">
+            Ven a visitarnos y descubre el sabor, la creatividad y la calidad de Talento Divino.
+        </p>
+
+        <div class="map-container fade-in-element">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47346.06649774577!2d-73.16709669527964!3d-41.77095696010078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a15320d58bd61%3A0xc3f5b7218ed2ea0!2sCalbuco%2C%20Los%20Lagos!5e0!3m2!1ses-419!2scl!4v1699999999999!5m2!1ses-419!2scl"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         CONTACTO
+    ========================================================= -->
+
+    <section id="contacto">
+
+        <h2 class="fade-in-element">Contáctanos</h2>
+
+        <div class="contact-wrapper">
+
+            <div class="contact-info fade-in-element">
+
+                <h3>Información</h3>
+
+                <div class="contact-item">
+                    <h4>📍 Dirección</h4>
+                    <p>Calbuco, Región de Los Lagos, Chile</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📞 Teléfono</h4>
+                    <p>+56 9 1234 5678</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📧 Correo</h4>
+                    <p>contacto@talentodivino.cl</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🕒 Horario</h4>
+                    <p>Lunes a Domingo • 08:00 - 21:00</p>
+                </div>
+
+            </div>
+
+            <div class="form-container fade-in-element">
+
+                <form id="formulario-contacto">
+
+                    <div class="grupo-input">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label>Mensaje</label>
+                        <textarea rows="6" id="mensaje" placeholder="Escribe tu consulta aquí..." required></textarea>
+                    </div>
+
+                    <button class="btn" type="submit" style="width:100%;">
+                        Enviar Mensaje
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-logo">Talento Divino</div>
+
+        <p class="footer-text">
+            Panadería, repostería y manualidades hechas con amor en Calbuco.
+        </p>
+
+        <div class="footer-socials">
+            <div class="social">f</div>
+            <div class="social">i</div>
+            <div class="social">w</div>
+        </div>
+
+        <p>
+            © 2026 Talento Divino • Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+    <!-- WhatsApp -->
+
+    <a class="whatsapp" href="#">
+        💬
+    </a>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        // =====================================================
+        // HEADER INTELIGENTE
+        // =====================================================
+
+        let lastScroll = 0;
+
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (currentScroll > lastScroll && currentScroll > 120) {
+                header.classList.add('hide-header');
+            } else {
+                header.classList.remove('hide-header');
+            }
+
+            lastScroll = currentScroll;
+
+        });
+
+        // =====================================================
+        // NAVEGACIÓN SUAVE
+        // =====================================================
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function(e) {
+
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+            });
+
+        });
+
+        // =====================================================
+        // FILTRO PRODUCTOS
+        // =====================================================
+
+        function filtrar(categoria, event) {
+
+            const botones = document.querySelectorAll('.btn-filtro');
+
+            botones.forEach(btn => {
+                btn.classList.remove('activo');
+            });
+
+            event.target.classList.add('activo');
+
+            const tarjetas = document.querySelectorAll('.tarjeta-producto');
+
+            tarjetas.forEach(tarjeta => {
+
+                if (categoria === 'todos' || tarjeta.classList.contains(categoria)) {
+
+                    tarjeta.classList.remove('oculto');
+                    tarjeta.style.animation = 'slideUp 0.5s ease';
+
+                } else {
+
+                    tarjeta.classList.add('oculto');
+
+                }
+
+            });
+
+        }
+
+        // =====================================================
+        // INTERSECTION OBSERVER
+        // =====================================================
+
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('visible');
+                    entry.target.classList.remove('exit');
+
+                } else {
+
+                    entry.target.classList.remove('visible');
+                    entry.target.classList.add('exit');
+
+                }
+
+            });
+
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            observer.observe(el);
+        });
+
+        // =====================================================
+        // FORMULARIO
+        // =====================================================
+
+        const formulario = document.getElementById('formulario-contacto');
+
+        formulario.addEventListener('submit', function(e) {
+
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+
+            alert(`¡Gracias ${nombre}! Hemos recibido tu mensaje correctamente.`);
+
+            formulario.reset();
+
+        });
+
+        // =====================================================
+        // EFECTO PARALLAX SUAVE
+        // =====================================================
+
+        window.addEventListener('scroll', () => {
+
+            const scrollY = window.scrollY;
+
+            document.querySelector('#inicio').style.backgroundPositionY = `${scrollY * 0.4}px`;
+
+        });
+
+        // =====================================================
+        // BOTONES AGREGAR
+        // =====================================================
+
+        const botonesAgregar = document.querySelectorAll('.tarjeta-producto .btn');
+
+        botonesAgregar.forEach(btn => {
+
+            btn.addEventListener('click', () => {
+
+                btn.textContent = 'Agregado ✓';
+
+                btn.style.background = '#43A047';
+
+                setTimeout(() => {
+
+                    btn.textContent = 'Agregar';
+                    btn.style.background = '';
+
+                }, 2000);
+
+            });
+
+        });
+
+        // =====================================================
+        // ANIMACIÓN DE SALIDA
+        // =====================================================
+
+        window.addEventListener('beforeunload', () => {
+            document.body.classList.add('page-exit');
+        });
+
+        // =====================================================
+        // RELOJ DINÁMICO EN CONSOLA
+        // =====================================================
+
+        setInterval(() => {
+
+            const fecha = new Date();
+
+            console.clear();
+
+            console.log(
+                'Talento Divino | Hora actual:',
+                fecha.toLocaleTimeString()
+            );
+
+        }, 1000);
+
+    </script>
+
+</body>
+</html>
